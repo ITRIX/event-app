@@ -1,0 +1,11 @@
+:host {
+    .app-header {
+        display: flex;
+        justify-content: flex-end;
+        box-shadow: 0px 3px 6px #00000029;
+        border-bottom: 1px solid #10172C26;
+        a {
+            margin-left: 1rem;
+        }
+    }
+}

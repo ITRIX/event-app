@@ -1,0 +1,10 @@
+:host {
+    .site-wrapper {
+        display: grid;
+        -ms-grid-rows: 6.875rem 1fr 3.125rem;
+        -ms-grid-columns: 1fr;
+        grid-template-rows: 3.5rem 1fr 5.125rem;
+        grid-template-columns: 1fr;
+        height: 100%;
+    }
+}
