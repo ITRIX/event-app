@@ -1,0 +1,74 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      // ANGULAR DEFINITION
+      "@angular/*": ["./node_modules/@angular/*"],
+      // ENVIRONMENTS
+      "@env": ["src/environments/environment"],
+      // CORE / ENUMS
+      "@enums/*": ["src/app/core/enums/*"],
+      "@enums": ["src/app/core/enums/index"],
+      // CORE / GUARDS
+      "@guards/*": ["src/app/core/guards/*"],
+      "@guards": ["src/app/core/guards/index"],
+      // CORE / HELPERS
+      "@helpers/*": ["src/app/core/helpers/*"],
+      "@helpers": ["src/app/core/helpers/index"],
+      // CORE / INTERCEPTORS
+      "@interceptors/*": ["src/app/core/interceptors/*"],
+      "@interceptors": ["src/app/core/interceptors/index"],
+      // CORE / INTERFACES
+      "@interfaces/*": ["src/app/core/interfaces/*"],
+      "@interfaces": ["src/app/core/interfaces/index"],
+      // CORE / MODELS
+      "@models/*": ["src/app/core/models/*"],
+      "@models": ["src/app/core/models/index"],
+      // CORE / SERVICES
+      "@services/*": ["src/app/core/services/*"],
+      "@services": ["src/app/core/services/index"],
+      // CORE /TYPES
+      "@types/*": ["src/app/core/types/*"],
+      "@types": ["src/app/core/types/index"],
+      // SHARED / PIPES
+      "@pipes/*": ["src/app/shared/pipes/*"],
+      "@pipes": ["src/app/shared/pipes/index"],
+      // SHARED / DIRECTIVES
+      "@directives/*": ["src/app/shared/directives/*"],
+      "@directives": ["src/app/shared/directives/index"],
+      // SHARED / COMPONENTS
+      "@components/*": ["src/app/shared/components/*"],
+      "@components": ["src/app/shared/components/index"],
+      // SHARED
+      "@shared/*": ["src/app/shared/*"],
+      "@shared": ["src/app/shared/index"],
+      // CORE / MODULES
+      "@modules/*": ["src/app/modules/*"],
+      "@modules": ["src/app/modules/index"],
+      // CORE
+      "@core/*": ["src/app/core/*"],
+      "@core": ["src/app/core/index"],
+      // APP
+      "@app/*": ["src/app/*"],
+      "@app": ["src/app/index"]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false
+  }
+}
