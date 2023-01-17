@@ -65,7 +65,9 @@
       "@core": ["src/app/core/index"],
       // APP
       "@app/*": ["src/app/*"],
-      "@app": ["src/app/index"]
+      "@app": ["src/app/index"],
+      //ASSETS
+      "@i18n/*": ["src/assets/i18n/*"]
     }
   },
   "angularCompilerOptions": {
