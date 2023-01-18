@@ -11,7 +11,18 @@ export const locale = {
             }
         },
         modules: {
-            title: 'Hallo Welt !!',
+            speakers: {
+                title: 'Speakers',
+                details: {
+                    backBtnTitle: 'Back to the Speakers',
+                    fullName: 'Full Name',
+                    email: 'Email',
+                    phone: 'Phone',
+                    mobile: 'Mobile',
+                    dob: 'Date of Birth',
+                    gender: 'Gender'
+                }
+            },
             shared: {}
         },
         errors: {}

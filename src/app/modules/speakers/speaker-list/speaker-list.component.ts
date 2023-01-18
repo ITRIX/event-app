@@ -1,10 +1,11 @@
+import { SessionStorageKeys } from './../../../core/enums/session-storage-keys.enum';
 import { SpeakersService } from './speakers.service';
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { ISpeaker } from '@interfaces/speakers';
-import { IPagerQuery } from '@interfaces/pager';
-import { map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { SessionStorageService } from '@services/session-storage.service';
+import { Router } from '@angular/router';
 /**
  * Component
  * @export
@@ -70,7 +71,7 @@ export class SpeakerListComponent implements OnInit {
    * @param {SpeakersService} speakersService
    * @memberof SpeakerListComponent
    */
-  constructor(private speakersService: SpeakersService, private sessionStorage: SessionStorageService) { }
+  constructor(private speakersService: SpeakersService, private sessionStorage: SessionStorageService, private router: Router) { }
   /**
    * on init
    * @memberof SpeakerListComponent
@@ -102,7 +103,8 @@ export class SpeakerListComponent implements OnInit {
    * @memberof SpeakerListComponent
    */
   showDetails(speaker: ISpeaker) {
-    this.sessionStorage.setItem('userDetails', speaker);
+    this.sessionStorage.setItem(SessionStorageKeys.USER_DETAILS, speaker);
+    this.router.navigate(['speakers/details']);
   }
   /**
    * Generates query

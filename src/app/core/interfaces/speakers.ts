@@ -243,6 +243,12 @@ export interface ISpeaker {
      */
     id: IId;
     /**
+     *
+     * @type {string}
+     * @memberof ISpeaker
+     */
+    cell: string;
+    /**
      * 
      * @type {IPicture}
      * @memberof ISpeaker
