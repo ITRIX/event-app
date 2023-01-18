@@ -2,7 +2,7 @@
     <div class="title-bar">
         <h1 class="title">Speakers</h1>
     </div>
-    <div class="speakers-list">
+    <div class="speakers-list" infiniteScroll [infiniteScrollDistance]=scrollDistance [infiniteScrollThrottle]=throttle scrollWindow=false (scrolled)="loadMore()">
         <ul class="auto-grid" role="list" *ngIf="speakers$ | async as speakersData">
             <li *ngFor="let speaker of speakersData; index as i">
                 <a class="profile">

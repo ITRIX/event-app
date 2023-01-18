@@ -19,21 +19,21 @@ export class SpeakersService {
    * @private
    * @memberof SpeakersService
    */
-  private readonly _apiBasePath = environment.apiBasePath + '?results=50&page=1';
+  private readonly _apiBasePath = environment.apiBasePath;
   /**
    * Creates an instance of SpeakersService.
    * @param {RestService} restService
    * @memberof SpeakersService
    */
   constructor(private restService: RestService) { }
-
   /**
    * Gets speakers
+   * @param {string} query
    * @returns {Observable<ISpeaker[]>}
    * @memberof SpeakersService
    */
-  getSpeakers(): Observable<ISpeaker[]> {
-    return this.restService.get<ISpeakers>(this._apiBasePath).pipe(
+  getSpeakers(query: string): Observable<ISpeaker[]> {
+    return this.restService.get<ISpeakers>(`${this._apiBasePath}${query}`).pipe(
       take(1),
       map((res: ISpeakers) => res.results)
     );
