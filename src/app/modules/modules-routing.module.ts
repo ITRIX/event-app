@@ -4,6 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 const ROUTES: Routes = [
     {
         path: '',
+        redirectTo: 'speakers',
+        pathMatch: 'full'
+    },
+    {
+        path: 'speakers',
         loadChildren: () => import('@modules/speakers/speakers.module').then(m => m.SpeakersModule)
     }
 ];

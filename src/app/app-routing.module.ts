@@ -5,7 +5,6 @@ const routes: Routes = [
   {
       path: '',
       loadChildren: () => import('@modules/modules.module').then(m => m.ModulesModule),
-      pathMatch: 'full'
   },
   {
     path: '**',

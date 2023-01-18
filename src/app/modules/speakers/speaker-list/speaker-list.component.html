@@ -5,7 +5,7 @@
     <div class="speakers-list" infiniteScroll [infiniteScrollDistance]=scrollDistance [infiniteScrollThrottle]=throttle scrollWindow=false (scrolled)="loadMore()">
         <ul class="auto-grid" role="list" *ngIf="speakers$ | async as speakersData">
             <li *ngFor="let speaker of speakersData; index as i">
-                <a class="profile">
+                <a class="profile" (click)="showDetails(speaker)">
                     <h2 class="profile__name">{{speaker.name.first}} {{speaker.name.last}}</h2>
                     <p class="profile__designation">{{speaker.location.country}}</p>
                     <img alt="Anita Simmons" [src]="speaker.picture.large" />

@@ -4,6 +4,7 @@ import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { ISpeaker } from '@interfaces/speakers';
 import { IPagerQuery } from '@interfaces/pager';
 import { map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { SessionStorageService } from '@services/session-storage.service';
 /**
  * Component
  * @export
@@ -69,7 +70,7 @@ export class SpeakerListComponent implements OnInit {
    * @param {SpeakersService} speakersService
    * @memberof SpeakerListComponent
    */
-  constructor(private speakersService: SpeakersService) { }
+  constructor(private speakersService: SpeakersService, private sessionStorage: SessionStorageService) { }
   /**
    * on init
    * @memberof SpeakerListComponent
@@ -94,6 +95,14 @@ export class SpeakerListComponent implements OnInit {
   loadMore() {
     this.pageNo++;
     this.loadMoreData$.next(true);
+  }
+  /**
+   * Shows details
+   * @param {ISpeaker} speaker
+   * @memberof SpeakerListComponent
+   */
+  showDetails(speaker: ISpeaker) {
+    this.sessionStorage.setItem('userDetails', speaker);
   }
   /**
    * Generates query

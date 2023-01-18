@@ -2,7 +2,7 @@ import { SharedModule } from '@shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpeakersRoutingModule } from './speakers-routing.module';
-import { SpeakerListComponent } from './speaker-list';
+import { SpeakerDetailsComponent, SpeakerListComponent } from './speaker-list';
 
 /**
  * Ng module
@@ -11,7 +11,8 @@ import { SpeakerListComponent } from './speaker-list';
  */
 @NgModule({
   declarations: [
-    SpeakerListComponent
+    SpeakerListComponent,
+    SpeakerDetailsComponent
   ],
   imports: [
     CommonModule,
