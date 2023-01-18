@@ -5,7 +5,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin: 2.5rem 1rem;
+        margin: 1.5rem 1rem;
         padding: 1rem;
 
         .title {
@@ -38,6 +38,7 @@
         backface-visibility: hidden;
         text-decoration: none;
         overflow: hidden;
+        cursor: pointer;
 
         &::before {
            @include generate-before-gradient();
