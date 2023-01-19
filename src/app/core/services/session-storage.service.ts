@@ -1,5 +1,5 @@
 import { Inject, Injectable, InjectionToken } from '@angular/core';
-
+import {Base64} from 'js-base64';
 export const SESSION_STORAGE = new InjectionToken<Storage>('Browser Storage', {
     providedIn: 'root',
     factory: () => sessionStorage
@@ -26,14 +26,15 @@ export class SessionStorageService {
      * @memberof SessionStorageService
      */
     getItem(key: string): Object {
+        key = Base64.encode(key);
         let item: string | Object = this.storage.getItem(key);
         if (!!item) {
-            try {
-                return JSON.parse((item as string)) as Object;
-            } catch {
-                item = undefined;
-                this.storage.removeItem(key);
-            }
+          try {
+            item = JSON.parse(Base64.decode(item as string)) as Object;
+          } catch {
+            item = undefined;
+            this.storage.removeItem(key);
+          }
         }
         return item;
     }
@@ -44,7 +45,7 @@ export class SessionStorageService {
      * @memberof SessionStorageService
      */
     setItem(key: string, value: Object) {
-        this.storage.setItem(key, JSON.stringify(value));
+        this.storage.setItem(Base64.encode(key), Base64.encode(JSON.stringify(value)));
     }
     /**
      * Items exists
@@ -55,7 +56,6 @@ export class SessionStorageService {
     itemExists(key: string): boolean {
         return !!this.getItem(key);
     }
-
     /**
      * Clears items
      * @memberof SessionStorageService

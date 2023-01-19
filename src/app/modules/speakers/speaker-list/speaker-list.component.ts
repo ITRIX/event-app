@@ -1,11 +1,11 @@
-import { SessionStorageKeys } from './../../../core/enums/session-storage-keys.enum';
 import { SpeakersService } from './speakers.service';
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
 import { ISpeaker } from '@interfaces/speakers';
 import { map, switchMap } from 'rxjs/operators';
 import { SessionStorageService } from '@services/session-storage.service';
 import { Router } from '@angular/router';
+import { SessionStorageKeys } from '@enums/session-storage-keys.enum';
 /**
  * Component
  * @export
@@ -19,15 +19,11 @@ import { Router } from '@angular/router';
 })
 export class SpeakerListComponent implements OnInit {
   /**
-   * Throttle of speaker list component
+   * Search result$ of speaker list component
+   * @type {BehaviorSubject<boolean>}
    * @memberof SpeakerListComponent
    */
-  throttle = 100;
-  /**
-   * Scroll distance of speaker list component
-   * @memberof SpeakerListComponent
-   */
-  scrollDistance = 1;
+  searchResult$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   /**
    * Speakers$ of speaker list component
    * @type {Observable<ISpeaker[]>}
@@ -67,6 +63,13 @@ export class SpeakerListComponent implements OnInit {
    */
   private pageSize = 50;
   /**
+   * Search term of speaker list component
+   * @private
+   * @type {string}
+   * @memberof SpeakerListComponent
+   */
+  private searchTerm: string = null;
+  /**
    * Creates an instance of SpeakerListComponent.
    * @param {SpeakersService} speakersService
    * @memberof SpeakerListComponent
@@ -79,9 +82,10 @@ export class SpeakerListComponent implements OnInit {
   ngOnInit(): void {
     this.pageNo = 1;
     this.speakers$ = combineLatest([
-      this.loadMoreData$
+      this.loadMoreData$,
+      this.searchResult$
     ]).pipe(
-      switchMap(() => this.speakersService.getSpeakers(this.generateQuery()).pipe(
+      switchMap(([canLoad, term]) => (!!term) ? of(this.filterData(this.speakersList, term)) : this.speakersService.getSpeakers(this.generateQuery()).pipe(
         map((result) => {
           this.speakersList.push(...result);
           return this.speakersList;
@@ -116,5 +120,16 @@ export class SpeakerListComponent implements OnInit {
     const queryArray = [];
     queryArray.push(`?results=${this.pageSize}&page=${this.pageNo}`);
     return queryArray.join('');
+  }
+  /**
+   * Filters data
+   * @private
+   * @param {ISpeaker[]} result
+   * @param {string} term
+   * @returns
+   * @memberof SpeakerListComponent
+   */
+  private filterData(result: ISpeaker[], term: string) {
+      return !!term ? result.filter((item) => item.name.first.toLowerCase().includes(term.toLowerCase())) : result;
   }
 }

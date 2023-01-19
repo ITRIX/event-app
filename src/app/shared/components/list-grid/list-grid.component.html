@@ -1,0 +1,11 @@
+<div class="users-list" infiniteScroll [infiniteScrollDistance]=scrollDistance [infiniteScrollThrottle]=throttle scrollWindow=false (scrolled)="loadData.emit()">
+    <ul class="auto-grid" role="list" *ngIf="listData$ | async as data">
+        <li *ngFor="let item of data; index as i">
+            <a class="profile" (click)="navigateToDetail.emit(item)">
+                <h2 class="profile__name">{{item.name.first}} {{item.name.last}}</h2>
+                <p class="profile__designation">{{item.location.country}}</p>
+                <img alt="Picture not found" [src]="item.picture.large" />
+            </a>
+        </li>
+    </ul>
+</div>
