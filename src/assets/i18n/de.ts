@@ -12,15 +12,15 @@ export const locale = {
         },
         modules: {
             speakers: {
-                title: 'Speakers',
+                title: 'Lautsprecher',
                 details: {
-                    backBtnTitle: 'Back to the Speakers',
-                    fullName: 'Full Name',
+                    backBtnTitle: 'Zurück zu den Lautsprechern',
+                    fullName: 'Vollständiger Name',
                     email: 'Email',
-                    phone: 'Phone',
-                    mobile: 'Mobile',
+                    phone: 'Telefon',
+                    mobile: 'Mobiltelefon',
                     dob: 'Date of Birth',
-                    gender: 'Gender'
+                    gender: 'Geschlecht'
                 }
             },
             shared: {}
