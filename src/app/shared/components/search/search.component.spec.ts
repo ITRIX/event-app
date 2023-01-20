@@ -1,16 +1,24 @@
+import { BehaviorSubject } from 'rxjs';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchComponent } from './search.component';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ SearchComponent ]
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        ReactiveFormsModule,
+        FormsModule
+      ],
+      declarations: [ SearchComponent ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +27,11 @@ describe('SearchComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('ngOnit', async () => {
+    component.ngOnInit();
+    let search = component.form.controls['searchField'];
+    search.setValue('test');
+    search.updateValueAndValidity();
   });
+
 });

@@ -31,6 +31,12 @@ export class SpeakerListComponent implements OnInit {
    */
   speakers$: Observable<ISpeaker[]>;
   /**
+ * Page no of speaker list component
+ * @type {number}
+ * @memberof SpeakerListComponent
+ */
+  pageNo: number;
+  /**
    * Speakers list of speaker list component
    * @private
    * @type {ISpeaker[]}
@@ -45,36 +51,20 @@ export class SpeakerListComponent implements OnInit {
    */
   private loadMoreData$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   /**
-   * Creates an instance of SpeakerListComponent.
-   * @param {SpeakersService} speakersService
-   * @memberof SpeakerListComponent
-   */
-  /**
-   * Speakers service of speaker list component
-   * @private
-   * @type {number}
-   * @memberof SpeakerListComponent
-   */
-  private pageNo: number;
-  /**
    * Page size of speaker list component
    * @private
    * @memberof SpeakerListComponent
    */
   private pageSize = 50;
   /**
-   * Search term of speaker list component
-   * @private
-   * @type {string}
-   * @memberof SpeakerListComponent
-   */
-  private searchTerm: string = null;
-  /**
    * Creates an instance of SpeakerListComponent.
    * @param {SpeakersService} speakersService
    * @memberof SpeakerListComponent
    */
-  constructor(private speakersService: SpeakersService, private sessionStorage: SessionStorageService, private router: Router) { }
+  constructor(
+    private speakersService: SpeakersService,
+    private sessionStorage: SessionStorageService,
+    private router: Router) { }
   /**
    * on init
    * @memberof SpeakerListComponent
@@ -85,7 +75,7 @@ export class SpeakerListComponent implements OnInit {
       this.loadMoreData$,
       this.searchResult$
     ]).pipe(
-      switchMap(([canLoad, term]) => (!!term) ? of(this.filterData(this.speakersList, term)) : this.speakersService.getSpeakers(this.generateQuery()).pipe(
+      switchMap(([_, term]) => (!!term) ? of(this.filterData(this.speakersList, term)) : this.speakersService.getSpeakers(this.generateQuery()).pipe(
         map((result) => {
           this.speakersList.push(...result);
           return this.speakersList;
@@ -130,6 +120,6 @@ export class SpeakerListComponent implements OnInit {
    * @memberof SpeakerListComponent
    */
   private filterData(result: ISpeaker[], term: string) {
-      return !!term ? result.filter((item) => item.name.first.toLowerCase().includes(term.toLowerCase())) : result;
+    return !!term ? result.filter((item) => item.name.first.toLowerCase().includes(term.toLowerCase())) : result;
   }
 }

@@ -36,7 +36,6 @@ export class SearchComponent implements OnInit {
       debounceTime(300),
       distinctUntilChanged()
     ).subscribe((value: string) => {
-      console.log(value);
       this.searchChange.next(value);
     });
   }
